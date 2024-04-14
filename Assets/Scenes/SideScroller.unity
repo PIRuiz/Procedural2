@@ -361,7 +361,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 498973435}
-  - component: {fileID: 498973434}
   m_Layer: 0
   m_Name: GenerateLevel
   m_TagString: Untagged
@@ -369,27 +368,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &498973434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 498973433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50fc63d09c78eb447b96bb74463a3818, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tilePlatform: {fileID: 11400000, guid: 33ecf6cd748f20641ae2ed2190d6d5d6, type: 2}
-  tileMap: {fileID: 298797049}
-  height: 10
-  width: 200
-  sInterval: 5
-  perlinSeed: 0.1
-  limit: 0.5
-  randomSeed: 42
-  steps: 20
 --- !u!4 &498973435
 Transform:
   m_ObjectHideFlags: 0
