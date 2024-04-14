@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -19,13 +17,13 @@ public class GenerateTopDown : GenerateLevel
     [Tooltip("Anchura")] [SerializeField] [Range(1, 1000)] private int width = 10;
     
     /// <summary>
-    /// Genera una matriz usando <see cref="Mathf.PerlinNoise"/>
+    /// Genera una matriz para juego de vista cenital usando <see cref="Mathf.PerlinNoise"/>
     /// </summary>
     /// <param name="lWidth">Anchura de la matriz</param>
     /// <param name="lHeight">Altura de la matriz</param>
     /// <param name="randomLimit">Límite para decidir si es pared</param>
     /// <param name="localSeed">Semilla para variar la matriz</param>
-    /// <returns></returns>
+    /// <returns>Matriz para generación de niveles</returns>
     private int[,] GenerateNoiseMatrix(int lWidth, int lHeight, float randomLimit, float localSeed)
     {
         int[,] newMatrix = new int[lWidth, lHeight];
