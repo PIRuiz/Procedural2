@@ -28,6 +28,16 @@ public class EditorGenerateTopDown : UnityEditor.Editor
             myScript.ButtonDeletePerlinTileMap();
         }
 
+        if (GUILayout.Button("Generar Tile Map con BSP"))
+        {
+            myScript.ButtonGenerateBspTileMap();
+        }
+
+        if (GUILayout.Button("Generar Tile Map con Random Walk"))
+        {
+            myScript.ButtonRandomWalk();
+        }
+
         if (GUILayout.Button("Cambiar Semilla Aleatoria"))
         {
             myScript.ButtonGetRandomSeed();

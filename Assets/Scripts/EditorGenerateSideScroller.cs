@@ -37,6 +37,11 @@ public class EditorGenerateSideScroller : UnityEditor.Editor
             myScript.ButtonGenerateTopBottom();
         }
 
+        if (GUILayout.Button("Generar Tile Map con altura aleatoria suavizada"))
+        {
+            myScript.ButtonGenerateSmoothTopBottom();
+        }
+
         if (GUILayout.Button("Cambiar Semilla Aleatoria"))
         {
             myScript.ButtonGetRandomSeed();

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using Random = UnityEngine.Random;
 
 /// <summary>
 /// Extensión de <see cref="GenerateLevel"/> para añadir generación procedural de <see cref="Tilemap"/> en un juego
@@ -379,6 +378,14 @@ public class GenerateSideScroller : GenerateLevel
     public void ButtonGenerateTopBottom()
     {
         PlaceTileMap(RandomTopBottom(width, height, randomSeed), tileMap, tilePlatform);
+    }
+    
+    /// <summary>
+    /// Genera el nivel usando Random Walk solo de arriba a abajo
+    /// </summary>
+    public void ButtonGenerateSmoothTopBottom()
+    {
+        PlaceTileMap(SmoothTopBottom(width, height, randomSeed, steps), tileMap, tilePlatform);
     }
 
     #endregion
