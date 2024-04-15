@@ -5,7 +5,7 @@ using UnityEditor;
 /// Extiende el inspector de Unity de la clase <see cref="GenerateTopDown"/>
 /// </summary>
 [CustomEditor(typeof(GenerateTopDown))]
-public class EditorGenerateTopDown : UnityEditor.Editor
+public class EditorGenerateTopDown : Editor
 {
     public override void OnInspectorGUI()
     {
@@ -36,6 +36,11 @@ public class EditorGenerateTopDown : UnityEditor.Editor
         if (GUILayout.Button("Generar Tile Map con Random Walk"))
         {
             myScript.ButtonRandomWalk();
+        }
+
+        if (GUILayout.Button("Generar Tile Map con Agent Based"))
+        {
+            myScript.ButtonAgentBased();
         }
 
         if (GUILayout.Button("Cambiar Semilla Aleatoria"))

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 /// <summary>
-/// Clase para colocar <see cref="Tile"/>s en un <see cref="Tilemap"/>
+/// Clase para colocar <see cref="Tile">Celdas</see> en un <see cref="Tilemap"/>
 /// </summary>
 public class GenerateLevel : MonoBehaviour
 {
@@ -28,7 +28,7 @@ public class GenerateLevel : MonoBehaviour
     }
 
     /// <summary>
-    /// Borra los <see cref="Tile"/>s de la matriz enviada en el <see cref="Tilemap"/> indicado
+    /// Borra las <see cref="Tile">Celdas</see> de la matriz enviada en el <see cref="Tilemap"/> indicado
     /// </summary>
     /// <param name="matrix">Matriz con las posiciones</param>
     /// <param name="tileMap"><see cref="Tilemap"/> del que borrar <see cref="Tile"/>s</param>
@@ -48,7 +48,7 @@ public class GenerateLevel : MonoBehaviour
     }
     
     /// <summary>
-    /// Borra todos los <see cref="Tile"/>s de un <see cref="Tilemap"/>
+    /// Borra todas las <see cref="Tile">Celdas</see> de un <see cref="Tilemap"/>
     /// </summary>
     /// <param name="tileMap"><see cref="Tilemap"/> a borrar</param>
     public void ButtonClearTileMap(Tilemap tileMap)

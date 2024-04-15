@@ -5,7 +5,7 @@ using UnityEditor;
 /// Extiende el inspector de Unity de la clase <see cref="GenerateSideScroller"/>
 /// </summary>
 [CustomEditor(typeof(GenerateSideScroller))]
-public class EditorGenerateSideScroller : UnityEditor.Editor
+public class EditorGenerateSideScroller : Editor
 {
     public override void OnInspectorGUI()
     {

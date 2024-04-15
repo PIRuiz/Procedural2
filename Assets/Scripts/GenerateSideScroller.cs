@@ -166,16 +166,16 @@ public class GenerateSideScroller : GenerateLevel
         // Configuramos la semilla para asegurar consistencia
         Random.InitState(rSeed);
         // Obtenemos posición aleatoria y la marcamos 
-        var currentPos = new Vector2Int(Random.Range(0, lWidth), Random.Range(0, lHeight));
-        newMatrix[currentPos.x, currentPos.y] = 1;
+        var position = new Vector2Int(Random.Range(0, lWidth), Random.Range(0, lHeight));
+        newMatrix[position.x, position.y] = 1;
         // Mientras nos quedan pasos
         for (int step = 0; step < lSteps; step++)
         {
-            var newPos = currentPos + new Vector2Int(Random.Range(-1, 2), Random.Range(-1, 2));
-            if (newPos.x >= 0 && newPos.x < lWidth && newPos.y >= 0 && newPos.y < lHeight)
+            var nPosition = position + new Vector2Int(Random.Range(-1, 2), Random.Range(-1, 2));
+            if (nPosition.x >= 0 && nPosition.x < lWidth && nPosition.y >= 0 && nPosition.y < lHeight)
             {
-                newMatrix[newPos.x, newPos.y] = 1;
-                currentPos = newPos;
+                newMatrix[nPosition.x, nPosition.y] = 1;
+                position = nPosition;
             }
         }
 
@@ -204,7 +204,7 @@ public class GenerateSideScroller : GenerateLevel
         {
             // Pedimos nueva altura aleatoria
             int newHeight = currentHeight + Random.Range(-1, 2);
-            // Si es valida cambiamos la altura por la nueva
+            // Si es válida cambiamos la altura por la nueva
             if (newHeight > 0 && newHeight < lHeight)
                 currentHeight = newHeight;
             for (int row = currentHeight; row > 0 && row < lHeight; row--)
@@ -243,7 +243,7 @@ public class GenerateSideScroller : GenerateLevel
             {
                 // Pedimos nueva altura aleatoria
                 int newHeight = currentHeight + Random.Range(-1, 2);
-                // Si es valida cambiamos la altura por la nueva
+                // Si es válida cambiamos la altura por la nueva
                 if (newHeight > 0 && newHeight < lHeight)
                     currentHeight = newHeight;
                 sectionWidth = 0;
@@ -267,11 +267,11 @@ public class GenerateSideScroller : GenerateLevel
     /// </summary>
     private void ShowyRandomWalk()
     {
-        var newPos = _currentPosition + new Vector2Int(Random.Range(-1, 2), Random.Range(-1, 2));
-        if (newPos.x >= 0 && newPos.x <= width && newPos.y >= 0 && newPos.y <= height)
+        var nPosition = _currentPosition + new Vector2Int(Random.Range(-1, 2), Random.Range(-1, 2));
+        if (nPosition.x >= 0 && nPosition.x <= width && nPosition.y >= 0 && nPosition.y <= height)
         {
             tileMap.SetTile(new Vector3Int(_currentPosition.x, _currentPosition.y, 0), tilePlatform);
-            _currentPosition = newPos;
+            _currentPosition = nPosition;
         }
     }
     /// <summary>
