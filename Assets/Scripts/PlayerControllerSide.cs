@@ -2,30 +2,38 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
 public class PlayerControllerSide : MonoBehaviour
 {
-    [Tooltip("Velocidad máxima de movimiento")] [SerializeField]
-    private float maxMoveSpeed = 5f;
-
-    [Tooltip("Fuerza de movimiento")] [SerializeField]
-    private float moveForce = 50f;
+    [Tooltip("Velocidad de movimiento")] [SerializeField]
+    private float moveSpeed = 5f;
 
     [Tooltip("Fuerza de salto")] [SerializeField]
-    private float jumpForce = 500f;
+    private float jumpForce = 10f;
 
     [Tooltip("Rigid Body del jugador")] public Rigidbody2D myRb;
+    
+    [Tooltip("Cine machine que sigue al jugador")] [SerializeField] private CinemachineConfiner2D _confiner2D;
+    private GenerateSideScroller _generator;
 
-    /// <summary>
-    /// Velocidad deseada
-    /// </summary>
-    private float _targetVelocity;
+    private void ResetCamera()
+    {
+        _confiner2D.InvalidateCache();
+    }
 
     private void Awake()
     {
         if (!myRb) myRb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
+    {
+        _generator = FindObjectOfType<GenerateSideScroller>();
+        _generator.ButtonPlaceLimits();
+        Invoke(nameof(ResetCamera),0.01f);
     }
 
     private void Update()
@@ -33,25 +41,15 @@ public class PlayerControllerSide : MonoBehaviour
         // Leer la entrada de movimiento
         var moveInput = Input.GetAxisRaw("Horizontal");
 
-        // Calcular la velocidad deseada en función de la entrada y la velocidad máxima
-        _targetVelocity = moveInput * maxMoveSpeed;
+        myRb.velocity = new Vector2(moveInput * moveSpeed, myRb.velocity.y);
 
         // Saltar
         if (Input.GetKeyDown(KeyCode.Space))
         {
             myRb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
         }
-    }
-
-    private void FixedUpdate()
-    {
-        // Calcular la diferencia entre la velocidad actual y la velocidad deseada
-        var velocityDiff = _targetVelocity - myRb.velocity.x;
-
-        // Calcular la fuerza de movimiento en función de la diferencia de velocidad
-        var moveForceToApply = Mathf.Clamp(velocityDiff * moveForce, -moveForce, moveForce);
-
-        // Aplicar la fuerza para mover horizontalmente
-        myRb.AddForce(new Vector2(moveForceToApply, 0f));
+        
+        if (myRb.velocity.x is > -0.25f and < 0.25f) myRb.velocity = new Vector2(0, myRb.velocity.y);
+        transform.localScale = myRb.velocity.x < 0 ? Vector3.one : new Vector3(-1, 1, 1);
     }
 }

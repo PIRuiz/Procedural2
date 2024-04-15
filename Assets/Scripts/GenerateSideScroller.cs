@@ -19,6 +19,8 @@ public class GenerateSideScroller : GenerateLevel
     [Tooltip("Limite para ajustar altura")] [SerializeField] [Range(0.0001f, 0.9999f)] private float limit = .5f;
     [Tooltip("Semilla para Random Walk")] [SerializeField] [Range(1, 10000)] private int randomSeed = 42;
     [Tooltip("Pasos de Random Walk")] [SerializeField] [Range(1, 10000)] private int steps = 20;
+    [Tooltip("Tile map para limitar cámara")] [SerializeField] private Tilemap cameraTileMap;
+    [Tooltip("Tile map para limitar al jugador")] [SerializeField] private Tilemap lockTileMap;
 
     private Vector2Int _currentPosition;
     private int _currentCol;
@@ -386,6 +388,42 @@ public class GenerateSideScroller : GenerateLevel
     public void ButtonGenerateSmoothTopBottom()
     {
         PlaceTileMap(SmoothTopBottom(width, height, randomSeed, steps), tileMap, tilePlatform);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void ButtonPlaceLimits()
+    {
+        CameraTileMap(cameraTileMap, lockTileMap, tilePlatform);
+    }
+    
+    /// <summary>
+    /// Llena un <see cref="Tilemap"/> de <see cref="Tile"/>s
+    /// </summary>
+    private void CameraTileMap(Tilemap cameraMap, Tilemap lockMap, RuleTile tile)
+    {
+        int lWidth = width + 2;
+        int lHeight = 25;
+        int[,] newMatrix = new int[lWidth, lHeight];
+
+        for (int yIndex = 0; yIndex < lWidth; yIndex++)
+        {
+            for (int xIndex = 2; xIndex < lHeight; xIndex++)
+            {
+                newMatrix[yIndex, xIndex] = 1;
+            }
+        }
+        PlaceTileMap(newMatrix, cameraMap, tile);
+        newMatrix = new int[lWidth + 2, lHeight];
+        for (int yIndex = lWidth - 2; yIndex < lWidth + 2; yIndex++)
+        {
+            for (int xIndex = 0; xIndex < lHeight; xIndex++)
+            {
+                newMatrix[yIndex, xIndex] = 1;
+            }
+        }
+        PlaceTileMap(newMatrix, lockMap, tile);
     }
 
     #endregion

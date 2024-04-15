@@ -46,5 +46,10 @@ public class EditorGenerateSideScroller : Editor
         {
             myScript.ButtonGetRandomSeed();
         }
+
+        if (GUILayout.Button("Colocar Límites"))
+        {
+            myScript.ButtonPlaceLimits();
+        }
     }
 }
