@@ -48,8 +48,6 @@ public class PlayerControllerSide : MonoBehaviour
         {
             myRb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
         }
-        
-        if (myRb.velocity.x is > -0.25f and < 0.25f) myRb.velocity = new Vector2(0, myRb.velocity.y);
         transform.localScale = myRb.velocity.x < 0 ? Vector3.one : new Vector3(-1, 1, 1);
     }
 }
