@@ -173,7 +173,8 @@ MonoBehaviour:
   moveSpeed: 12
   jumpForce: 20
   myRb: {fileID: 85869384}
-  _confiner2D: {fileID: 770276435}
+  confiner2D: {fileID: 770276435}
+  tileMap: {fileID: 298797049}
 --- !u!50 &85869384
 Rigidbody2D:
   serializedVersion: 4
@@ -953,6 +954,7 @@ GameObject:
   - component: {fileID: 670915707}
   - component: {fileID: 670915706}
   - component: {fileID: 670915705}
+  - component: {fileID: 670915709}
   m_Layer: 2
   m_Name: CameraLock
   m_TagString: Untagged
@@ -1482,7 +1484,7 @@ Tilemap:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -11, y: -5, z: 0}
   m_Size: {x: 211, y: 30, z: 1}
-  m_TileAnchor: {x: 0, y: 0, z: 0}
+  m_TileAnchor: {x: 0, y: 1.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
     e00: 1
@@ -1501,6 +1503,18 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &670915709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670915702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2051b1b2264c44b40ac4c7e06f0acfa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &770276432
 GameObject:
   m_ObjectHideFlags: 0
