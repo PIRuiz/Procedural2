@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 /// <summary>
-/// Tile especializada
+/// Celda especializada
 /// </summary>
 [CreateAssetMenu(fileName = "NuevoTile", menuName = "Tiles/Rule Tile")]
 public class GameRuleTile : RuleTile
