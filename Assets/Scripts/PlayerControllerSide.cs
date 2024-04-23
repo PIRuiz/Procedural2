@@ -18,6 +18,7 @@ public class PlayerControllerSide : MonoBehaviour
     private void ResetCamera()
     {
         confiner2D.InvalidateCache();
+        FindFreeInColumn(3);
     }
 
     private void Awake()

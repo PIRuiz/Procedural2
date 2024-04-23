@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// Extensión de <see cref="GenerateLevel"/> para añadir generación procedural de <see cref="Tilemap"/> en un juego
@@ -28,32 +30,9 @@ public class GenerateSideScroller : GenerateLevel
 
     #endregion
 
-    private void Update()
+    private void Start()
     {
-        if (Input.GetKey(KeyCode.R))
-        {
-            ShowyRandomWalk();
-        }
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            ShowyPerlinNoise();
-        }
-
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            ShowySmoothPerlin();
-        }
-
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            ShowyTopBottom();
-        }
-
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            ShowySmoothTopBottom();
-        }
+        PlaceTileMap(RandomTopBottom(width, height, Random.Range(1, int.MaxValue)), tileMap, tilePlatform);
     }
 
     # region Perlin
@@ -407,7 +386,7 @@ public class GenerateSideScroller : GenerateLevel
         int lHeight = 25;
         int[,] newMatrix = new int[lWidth, lHeight];
 
-        for (int yIndex = 0; yIndex < lWidth; yIndex++)
+        for (int yIndex = 0; yIndex < lWidth - 2; yIndex++)
         {
             for (int xIndex = 2; xIndex < lHeight; xIndex++)
             {
