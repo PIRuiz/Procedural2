@@ -1,6 +1,9 @@
 using Cinemachine;
 using UnityEngine;
 
+/// <summary>
+/// Clase para crear un nivel rectangular de tamaño preconfigurado
+/// </summary>
 public class PrefabGenerator : MonoBehaviour
 {
     [Tooltip("Ancho")] [SerializeField] [Range(2, 25)] private int width = 3;
@@ -23,25 +26,32 @@ public class PrefabGenerator : MonoBehaviour
     {
         GenerateLevel();
     }
-
+    
+    /// <summary>
+    /// Genera un nivel usando el ancho y el alto de la clase
+    /// </summary>
     private void GenerateLevel()
     {
+        // Recorremos el alto y el ancho
         for (var y = height; y > 0; y--){
             for (var x = width; x > 0; x--)
             {
                 GameObject newPiece;
+                // Si estamos en la posición más alta colocamos piezas superiores
                 if (y == height)
                 {
                     if (x == 1) newPiece = tlPrefab[Random.Range(0,tlPrefab.Length)];
                     else if (x == width) newPiece = trPrefab[Random.Range(0,trPrefab.Length)];
                     else newPiece = tcPrefab[Random.Range(0,tcPrefab.Length)];
                 }
+                // Si estamos en la posición inicial colocamos las piezas inferiores
                 else if (y == 1)
                 {
                     if (x == 1) newPiece = blPrefab[Random.Range(0,blPrefab.Length)];
                     else if (x == width) newPiece = brPrefab[Random.Range(0,brPrefab.Length)];
                     else newPiece = bcPrefab[Random.Range(0,bcPrefab.Length)];
                 }
+                // Si no estamos en la posición superior o inferior colocamos las piezas centrales
                 else
                 {
                     if (x == 1) newPiece = mlPrefab[Random.Range(0,mlPrefab.Length)];
@@ -51,6 +61,7 @@ public class PrefabGenerator : MonoBehaviour
                 Instantiate(newPiece, new Vector3(x * 4, y * 4), Quaternion.identity, transform);
             }
         }
+        // Configuramos los limites de la cámara
         camLimits.points = new Vector2[4]
         {
             new Vector2(0, width * 4),
@@ -58,9 +69,12 @@ public class PrefabGenerator : MonoBehaviour
             new Vector2(height * 4, 0),
             new Vector2(0, 0)
         };
+        // Reiniciamos la camara, llamamos con Invoke("Nombre de la función") para que de tiempo a generar los límites
         Invoke(nameof(ResetCamera),0.01f);
     }
-    
+    /// <summary>
+    /// Borra la memoria cache del confiner para recalcular los límites
+    /// </summary>
     private void ResetCamera()
     {
         confiner2D.InvalidateCache();

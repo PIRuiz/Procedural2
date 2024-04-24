@@ -370,7 +370,7 @@ public class GenerateSideScroller : GenerateLevel
     }
 
     /// <summary>
-    /// 
+    /// Crear los límites del area de juego
     /// </summary>
     public void ButtonPlaceLimits()
     {

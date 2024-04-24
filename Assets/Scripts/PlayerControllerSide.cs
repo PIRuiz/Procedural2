@@ -15,6 +15,9 @@ public class PlayerControllerSide : MonoBehaviour
     [Tooltip("Tile map con colisiones")] [SerializeField] private Tilemap tileMap;
     private GenerateSideScroller _generator;
 
+    /// <summary>
+    /// Recalcular los límites del área de juego y colocar el jugador en la posición inicial
+    /// </summary>
     private void ResetCamera()
     {
         confiner2D.InvalidateCache();
@@ -28,6 +31,8 @@ public class PlayerControllerSide : MonoBehaviour
 
     private void Start()
     {
+        // Colocamos los límites del nivel y Reiniciamos la camara, llamamos con Invoke("Nombre de la función")
+        // para que de tiempo a generar los límites
         _generator = FindObjectOfType<GenerateSideScroller>();
         _generator.ButtonPlaceLimits();
         Invoke(nameof(ResetCamera),0.01f);
